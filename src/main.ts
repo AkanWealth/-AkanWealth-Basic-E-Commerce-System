@@ -1,9 +1,14 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  // Load environment variables
+  app.setGlobalPrefix('api'); // Optional: Prefix all routes with 'api'
 
   // Swagger configuration
   const options = new DocumentBuilder()
@@ -15,8 +20,12 @@ async function bootstrap() {
     .build();
 
   const document = SwaggerModule.createDocument(app, options);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('api/docs', app, document); // Access Swagger UI at '/api/docs'
 
-  await app.listen(4000);
+  const configService = app.get(ConfigService);
+  const port = configService.get<number>('PORT') || 4000; // Default to 3000 if not set
+
+  await app.listen(port);
 }
+
 bootstrap();

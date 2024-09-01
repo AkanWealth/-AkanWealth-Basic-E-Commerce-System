@@ -26,6 +26,45 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+This project is a backend API for a basic e-commerce system built with NestJS and PostgreSQL. It includes user management with authentication and role-based access control, and product management with approval workflows. The API also features Swagger documentation for easy exploration of endpoints.
+
+## Features
+
+- **User Management**:
+  - Registration and authentication.
+  - Role-based access control (user and admin roles).
+  - Admins can ban/unban users and change their roles.
+
+- **Product Management**:
+  - Authenticated users can manage their own products.
+  - Admins can approve or disapprove products.
+  - Only approved products are visible to unauthenticated users.
+
+- **Documentation**:
+  - API documentation provided via Swagger.
+
+## Technologies
+
+- **NestJS**: A progressive Node.js framework for building server-side applications.
+- **PostgreSQL**: A powerful, open-source relational database system.
+- **TypeORM**: An ORM for TypeScript and JavaScript.
+- **Swagger**: API documentation tool integrated with NestJS.
+
+## Getting Started
+
+### Prerequisites
+
+- **Node.js**: Ensure Node.js (v14 or later) is installed.
+- **PostgreSQL**: Ensure PostgreSQL is installed and running.
+
+### Installation
+
+1. **Clone the Repository**
+
+   ```bash
+   git clone https://github.com/AkanWealth/-AkanWealth-Basic-E-Commerce-System.git
+   cd your-repository
+
 ## Installation
 
 ```bash
@@ -58,17 +97,6 @@ $ yarn run test:e2e
 $ yarn run test:cov
 ```
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
 
 Nest is [MIT licensed](LICENSE).
 # -AkanWealth-Basic-E-Commerce-System

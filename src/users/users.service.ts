@@ -1,31 +1,31 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { User, UserRole } from './entities/user.entity';
+import { Users, UserRole } from './entities/user.entity';
 import * as bcrypt from 'bcrypt';
 import { CreateUserDto } from './dto/user.dto';
 
 @Injectable()
 export class UsersService {
   constructor(
-    @InjectRepository(User)
-    private readonly userRepository: Repository<User>,
+    @InjectRepository(Users)
+    private readonly userRepository: Repository<Users>,
   ) { }
 
-  async findAll(): Promise<User[]> {
+  async findAll(): Promise<Users[]> {
     return this.userRepository.find();
   }
 
-  async findOne(email: string): Promise<User | undefined> {
+  async findOne(email: string): Promise<Users | undefined> {
     return this.userRepository.findOne({ where: { email } });
   }
 
-  async create(userDto: CreateUserDto): Promise<User> {
+  async create(userDto: CreateUserDto): Promise<Users> {
     const user = this.userRepository.create(userDto);
     return this.userRepository.save(user);
   }
 
-  async validateUser(email: string, password: string): Promise<User> {
+  async validateUser(email: string, password: string): Promise<Users> {
     const user = await this.findOne(email);
     if (user && !user.isBanned && (await bcrypt.compare(password, user.password))) {
       return user;

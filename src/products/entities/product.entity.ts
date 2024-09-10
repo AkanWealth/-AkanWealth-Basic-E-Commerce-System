@@ -1,8 +1,8 @@
-import { User } from 'src/users/entities/user.entity';
+import { Users } from 'src/users/entities/user.entity';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 
 @Entity()
-export class Product {
+export class Products {
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -21,6 +21,6 @@ export class Product {
     @Column({ default: false })
     isApproved: boolean;
 
-    @ManyToOne(() => User, user => user.id)
-    owner: User;
+    @ManyToOne(() => Users, user => user.id)
+    owner: Users;
 }
